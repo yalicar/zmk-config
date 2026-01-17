@@ -21,7 +21,6 @@
         ;
 };
 
-/* Encoder derecho: habilitarlo */
 &right_encoder {
     status = "okay";
 };
