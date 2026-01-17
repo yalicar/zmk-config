@@ -42,28 +42,26 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,5) RC(4,6) RC(3,6) RC(3,7) 
             ;
     };
 
-    /* ================= ENCODERS ================= */
+    /* ================= ENCODERS =================
+     * NO ponemos sensors aquí.
+     * Cada overlay (left/right) define `chosen zmk,sensors = <&...>;`
+     */
 
-    /* Izquierdo (YA FUNCIONABA) */
-    left_encoder: encoder_left {
+    left_encoder: left_encoder {
         compatible = "alps,ec11";
+        status = "disabled";
         a-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <80>;
     };
 
-    /* Derecho (GPIO directo para evitar error de gpio-map) */
-    right_encoder: encoder_right {
+    right_encoder: right_encoder {
         compatible = "alps,ec11";
-        a-gpios = <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        status = "disabled";
+        /* En muchos Lily58 el encoder del lado derecho usa los mismos pines del conector Pro Micro en ESA mitad */
+        a-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <80>;
-    };
-
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder &right_encoder>;
-        triggers-per-rotation = <20>;
     };
 };
 
