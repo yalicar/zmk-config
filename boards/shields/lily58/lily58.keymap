@@ -22,12 +22,12 @@
                         &kp LALT &kp LGUI &mo 1  &kp SPACE  &kp RET  &mo 2  &kp BSPC &kp RGUI
             >;
 
-            /* sensor 0 (izquierdo) = volumen
-             * sensor 1 (derecho)   = flechas arriba/abajo
-             */
             sensor-bindings = <
+#if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
                 &inc_dec_kp C_VOL_UP C_VOL_DN
+#else
                 &inc_dec_kp UP DOWN
+#endif
             >;
         };
 
@@ -41,8 +41,11 @@
             >;
 
             sensor-bindings = <
+#if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
                 &inc_dec_kp C_VOL_UP C_VOL_DN
+#else
                 &inc_dec_kp UP DOWN
+#endif
             >;
         };
 
@@ -56,8 +59,11 @@
             >;
 
             sensor-bindings = <
+#if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
                 &inc_dec_kp C_VOL_UP C_VOL_DN
+#else
                 &inc_dec_kp UP DOWN
+#endif
             >;
         };
     };
